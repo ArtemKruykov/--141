@@ -11,7 +11,7 @@ Person::Person()
 	patronymic = "";
 }
 
-Person::Person(const string& ln, const string& fn, const string& pn)
+Person::Person(const string& ln, const string& fn, const string& pn = "")
 {
 	lastName = ln;
 	firstName = fn;
