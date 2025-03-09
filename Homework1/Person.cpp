@@ -28,6 +28,7 @@ void Person::ShowFormal()
 {
 	cout << "lastName " << lastName << endl;
 	cout << "firstName " << firstName << endl;
-	cout << "patronymic " << patronymic << endl << endl;
-	
+	if (!patronymic.empty()) {
+		cout << "patronymic: " << patronymic << endl;
+	}
 }
