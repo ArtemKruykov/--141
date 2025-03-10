@@ -5,7 +5,7 @@ using namespace std;
 
 int main() 
 {
-	Person package = Person("Kruykov", "Artem", "Aleksandrovich");
+	Person package = Person("Kruykov", "Artem");
 	package.Show(); 
 	package.ShowFormal();
 	return 0;

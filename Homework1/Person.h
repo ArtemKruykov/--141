@@ -9,7 +9,8 @@ private:
 	string patronymic;
 public:
 	Person();
-	Person(const string& ln, const string& fn, const string& pn = "");
+	Person(const string& ln, const string& fn, const string& pn);
+	Person(const string& ln, const string& fn);
 	void Show();//firstName + lastName 
 	void ShowFormal();//ิศฮ
 };
