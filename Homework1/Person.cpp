@@ -1,4 +1,4 @@
-#include <string>
+﻿#include <string>
 #include <iostream>
 #include "Person.h"
 
@@ -16,13 +16,6 @@ Person::Person(const string& ln, const string& fn, const string& pn)
 	lastName = ln;
 	firstName = fn;
 	patronymic = pn;
-}
-
-Person::Person(const string& ln, const string& fn)
-{
-	lastName = ln;
-	firstName = fn;
-	patronymic = "";
 }
 
 void Person::Show()

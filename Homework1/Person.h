@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 #include <string>
 using namespace std;
 class Person
@@ -9,8 +9,7 @@ private:
 	string patronymic;
 public:
 	Person();
-	Person(const string& ln, const string& fn, const string& pn);
-	Person(const string& ln, const string& fn);
+	Person(const string& ln, const string& fn, const string& pn = "");
 	void Show();//firstName + lastName 
-	void ShowFormal();//‘»Œ
+	void ShowFormal();//–§–ò–û
 };
