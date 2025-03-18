@@ -20,17 +20,13 @@ Person::Person(const string& ln, const string& fn, const string& pn)
 
 void Person::Show()
 {
-	if (patronymic == "") {
-		cout << "lastName " << lastName << endl;
-		cout << "firstName " << firstName << endl << endl;
-	}
+	cout << "lastName " << lastName << endl;
+	cout << "firstName " << firstName << endl << endl;
 }
 
 void Person::ShowFormal()
 {
-	if (patronymic != "") {
-		cout << "lastName " << lastName << endl;
-		cout << "firstName " << firstName << endl;
-		cout << "patronymic: " << patronymic << endl;
-	}
+	cout << "lastName " << lastName << endl;
+	cout << "firstName " << firstName << endl;
+	cout << "patronymic: " << patronymic << endl;
 }
