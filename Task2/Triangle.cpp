@@ -1,48 +1,45 @@
-#include <cmath>
+п»ї#include <cmath>
 #include "Triangle.h"
 
 /**
-* @brief Треугольник заданный тремя точками.
+* @brief РўСЂРµСѓРіРѕР»СЊРЅРёРє Р·Р°РґР°РЅРЅС‹Р№ С‚СЂРµРјСЏ С‚РѕС‡РєР°РјРё.
 */
 Triangle::Triangle(const Point& a, const Point& b, const Point& c) : A(a), B(b), C(c) 
 {
+    this->a = sideLength(B, C);
+    this->b = sideLength(A, C);
+    this->c = sideLength(A, B);
 }
 
 /**
-* @brief Вычисляем длину стороны треугольника.
-* @param  p1 Первая точка.
-* @param  p2 Вторая точка.
+* @brief Р’С‹С‡РёСЃР»СЏРµРј РґР»РёРЅСѓ СЃС‚РѕСЂРѕРЅС‹ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°.
+* @param  p1 РџРµСЂРІР°СЏ С‚РѕС‡РєР°.
+* @param  p2 Р’С‚РѕСЂР°СЏ С‚РѕС‡РєР°.
 */
 double Triangle::sideLength(const Point& p1, const Point& p2)
 {
-    return sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2));
+    return sqrt(pow(p2.getX() - p1.getX(), 2) + pow(p2.getY() - p1.getY(), 2));
 }
 
 /**
-* @brief Вычисляем периметр треугольника.
+* @brief Р’С‹С‡РёСЃР»СЏРµРј РїРµСЂРёРјРµС‚СЂ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°.
 */
 double Triangle::perimeter()
 {
-    double a = sideLength(B, C);
-    double b = sideLength(A, C);
-    double c = sideLength(A, B);
     return a + b + c;
 }
 
 /**
-* @brief Вычисляем площадь треугольника.
+* @brief Р’С‹С‡РёСЃР»СЏРµРј РїР»РѕС‰Р°РґСЊ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°.
 */
 double Triangle::area()
 {
-    double a = sideLength(B, C);
-    double b = sideLength(A, C);
-    double c = sideLength(A, B);
     double p = perimeter() / 2; 
     return sqrt(p * (p - a) * (p - b) * (p - c));
 }
 
 /**
-* @brief Вычисляем радиус вписанной окружности.
+* @brief Р’С‹С‡РёСЃР»СЏРµРј СЂР°РґРёСѓСЃ РІРїРёСЃР°РЅРЅРѕР№ РѕРєСЂСѓР¶РЅРѕСЃС‚Рё.
 */
 double Triangle::inradius()
 {
@@ -50,12 +47,9 @@ double Triangle::inradius()
 }
 
 /**
-* @brief Вычисляем радиус описанной окружности.
+* @brief Р’С‹С‡РёСЃР»СЏРµРј СЂР°РґРёСѓСЃ РѕРїРёСЃР°РЅРЅРѕР№ РѕРєСЂСѓР¶РЅРѕСЃС‚Рё.
 */
 double Triangle::circumradius()
 {
-    double a = sideLength(B, C);
-    double b = sideLength(A, C);
-    double c = sideLength(A, B);
     return (a * b * c) / (4 * area());
 }

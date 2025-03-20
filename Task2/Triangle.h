@@ -17,12 +17,13 @@ private:
     * @brief Третья точка.
     */
     Point C;
+    double a, b, c;
 public:
     /**
     * @brief Треугольник заданный тремя точками.
     */
     Triangle(const Point& a, const Point& b, const Point& c);
-    
+
     /**
     * @brief Вычисляем длину стороны треугольника.
     * @param  p1 Первая точка.
