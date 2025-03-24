@@ -10,16 +10,16 @@ using namespace std;
 */
 Point getPoint(string message);
 
+Triangle getTriangle();
+
 /**
 * @brief Точка входа в программу.
 * @return 0 при выполнении программы без ошибок.
 */
 int main() {
     setlocale(LC_ALL, "Russian");
-    Point A = getPoint("Введите координаты x и y для первой точки: ");
-    Point B = getPoint("Введите координаты x и y для второй точки: ");
-    Point C = getPoint("Введите координаты x и y для третьей точки: ");
-    Triangle triangle(A, B, C);
+    Triangle triangle = getTriangle();
+    triangle.check();
     cout << "Inradius: " << triangle.inradius() << endl;
     cout << "Circumradius: " << triangle.circumradius() << endl;
     return 0;
@@ -36,4 +36,11 @@ Point getPoint(string message)
         throw invalid_argument("Введено некорректное значение");
     }
     return Point(x, y);
+}
+
+Triangle getTriangle() {
+    Point A = getPoint("Введите координаты x и y для первой точки: ");
+    Point B = getPoint("Введите координаты x и y для второй точки: ");
+    Point C = getPoint("Введите координаты x и y для третьей точки: ");
+    return Triangle(A, B, C);
 }

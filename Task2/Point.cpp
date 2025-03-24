@@ -27,5 +27,5 @@ bool operator==(const Point& point1, const Point& point2)
 
 bool operator!=(const Point& point1, const Point& point2)
 {
-	return !(point1 == point2);
+	return (point1 == point2);
 }
