@@ -10,6 +10,9 @@ using namespace std;
 */
 Point getPoint(string message);
 
+/**
+* @brief Создание треугольника по 3 точкам.
+*/
 Triangle getTriangle();
 
 /**
@@ -19,7 +22,6 @@ Triangle getTriangle();
 int main() {
     setlocale(LC_ALL, "Russian");
     Triangle triangle = getTriangle();
-    triangle.check();
     cout << "Inradius: " << triangle.inradius() << endl;
     cout << "Circumradius: " << triangle.circumradius() << endl;
     return 0;

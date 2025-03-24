@@ -10,13 +10,18 @@ using namespace std;
 */
 Triangle::Triangle(const Point& a, const Point& b, const Point& c) : A(a), B(b), C(c) 
 {
-    if ((operator!=(A, B) == true) or (operator!=(B, C) == true) or (operator!=(C, A) == true)) {
-        std::cout << "Точки одинаковы!";
-        exit(EXIT_FAILURE);
-    }
     this->a = sideLength(B, C);
     this->b = sideLength(A, C);
     this->c = sideLength(A, B);
+    check();
+}
+
+void Triangle::check()
+{
+    if ((a == b or b == c or c == a) or ((a > (b + c)) or (b > (a + c)) or (c > (b + a)))) {
+        std::cout << "Треугольник не существует";
+        exit(EXIT_FAILURE);
+    }
 }
 
 /**
@@ -27,14 +32,6 @@ Triangle::Triangle(const Point& a, const Point& b, const Point& c) : A(a), B(b),
 double Triangle::sideLength(const Point& p1, const Point& p2)
 {
     return sqrt(pow(p2.getX() - p1.getX(), 2) + pow(p2.getY() - p1.getY(), 2));
-}
-
-void Triangle::check()
-{
-    if ((a > (b + c)) or (b > (a + c)) or (c > (b + a))) {
-        std::cout << "Треугольник не может существовать!";
-        exit(EXIT_FAILURE);
-    }
 }
 
 /**
