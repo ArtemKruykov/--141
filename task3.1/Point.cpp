@@ -20,11 +20,11 @@ std::ostream& operator<<(std::ostream& os, const Point& point) {
 
 std::istream& operator>>(std::istream& is, Point& point) {
     char ch;
-    is >> ch; // читаем '('
+    is >> ch; 
     is >> point.x;
-    is >> ch; // читаем ','
+    is >> ch; 
     is >> point.y;
-    is >> ch; // читаем ')'
+    is >> ch; 
     return is;
 }
 
