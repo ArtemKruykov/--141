@@ -17,7 +17,6 @@ public:
 
     static std::string ToString(const Polygon& polygon);
     std::string toString() const override;
-    void draw() const override;
 
     static Polygon ReadFromInput(unsigned int maxCoord);
     void readFromInput() override;
