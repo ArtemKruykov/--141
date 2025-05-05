@@ -19,4 +19,7 @@ public:
 
     static Polygon ReadFromInput(unsigned int maxCoord);
     void readFromInput() override;
+
+    friend std::ostream& operator<<(std::ostream& os, const Polygon& rect);
+    friend std::istream& operator>>(std::istream& is, Polygon& rect);
 };

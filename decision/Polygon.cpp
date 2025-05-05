@@ -50,23 +50,21 @@ std::string Polygon::ToString(const Polygon& polygon) {
 }
 
 std::string Polygon::toString() const {
-    return ToString(*this);
-}
-
-void Polygon::draw() const {
-    std::cout << toString() << std::endl;
+    return toString(*this);
 }
 
 Polygon Polygon::ReadFromInput(unsigned int maxCoord) {
+    std::ostringstream oss;
+    std::istringstream iss;
     std::vector<Point> points;
-    std::os << "Введите количество вершин: ";
+    oss << "Введите количество вершин: ";
     size_t count;
-    std::cin >> count;
+    iss >> count;
 
-    std::cout << "Введите вершины (Формата: (x,y)):" << std::endl;
+    oss << "Введите вершины (Формата: (x,y)):" << std::endl;
     for (size_t i = 0; i < count; ++i) {
         Point p;
-        std::cin >> p;
+        iss >> p;
         points.push_back(p);
     }
 
@@ -75,4 +73,14 @@ Polygon Polygon::ReadFromInput(unsigned int maxCoord) {
 
 void Polygon::readFromInput() {
     *this = ReadFromInput(maxCoordinate);
+}
+
+std::ostream& operator<<(std::ostream& os, const Polygon& pol) {
+    os << pol.toString();
+    return os;
+}
+
+std::istream& operator>>(std::istream& is, Polygon& pol) {
+    is >> pol.x >> pol.y;
+    return is;
 }
