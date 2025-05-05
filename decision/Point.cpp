@@ -27,11 +27,3 @@ std::istream& operator>>(std::istream& is, Point& point) {
     is >> ch;
     return is;
 }
-
-Point Point::operator+(double value) const {
-    return Point(x + value, y + value);
-}
-
-Point Point::operator-(double value) const {
-    return Point(x - value, y - value);
-}

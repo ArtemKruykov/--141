@@ -18,6 +18,4 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Point& point);
     friend std::istream& operator>>(std::istream& is, Point& point);
 
-    Point operator+(double value) const;
-    Point operator-(double value) const;
 };
