@@ -1,10 +1,7 @@
-﻿#pragma once
-#include <string>
+﻿#include "Shape.h"
+#include <iostream>
 
-class Shape {
-public:
-    virtual ~Shape() = default;
-    virtual std::string toString() const = 0;
-    void draw() const;
-    virtual void readFromInput() = 0;
-};
+void Shape::draw() const
+{
+	std::cout << toString() << std::endl;
+}

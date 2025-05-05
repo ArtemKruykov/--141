@@ -1,9 +1,9 @@
 ﻿#include "point.h"
 
-Point::Point(unsigned int x, unsigned int y) : x(x), y(y) {}
+Point::Point(double x, double y) : x(x), y(y) {}
 
-unsigned int Point::getX() const { return x; }
-unsigned int Point::getY() const { return y; }
+double Point::getX() const { return x; }
+double Point::getY() const { return y; }
 
 bool Point::operator==(const Point& other) const {
     return x == other.x && y == other.y;
@@ -28,10 +28,10 @@ std::istream& operator>>(std::istream& is, Point& point) {
     return is;
 }
 
-Point Point::operator+(unsigned int value) const {
+Point Point::operator+(double value) const {
     return Point(x + value, y + value);
 }
 
-Point Point::operator-(unsigned int value) const {
+Point Point::operator-(double value) const {
     return Point(x - value, y - value);
 }

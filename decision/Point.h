@@ -3,14 +3,14 @@
 
 class Point {
 private:
-    unsigned int x;
-    unsigned int y;
+    double x;
+    double y;
 
 public:
-    Point(unsigned int x = 0, unsigned int y = 0);
+    Point(double x = 0, double y = 0);
 
-    unsigned int getX() const;
-    unsigned int getY() const;
+    double getX() const;
+    double getY() const;
 
     bool operator==(const Point& other) const;
     bool operator!=(const Point& other) const;
@@ -18,6 +18,6 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Point& point);
     friend std::istream& operator>>(std::istream& is, Point& point);
 
-    Point operator+(unsigned int value) const;
-    Point operator-(unsigned int value) const;
+    Point operator+(double value) const;
+    Point operator-(double value) const;
 };

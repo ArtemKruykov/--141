@@ -15,21 +15,26 @@ bool Polygon::isValid() const {
     return true;
 }
 
-Polygon::Polygon(const std::vector<Point>& points, unsigned int maxCoord)
-    : vertices(points), maxCoordinate(maxCoord) {
+Polygon::Polygon(const std::vector<Point>& points, double getMaxCoord())
+    : vertices(points), maxCoordinate(getMaxCoord()) {
     if (!isValid()) {
         throw std::invalid_argument("Недопустимые координаты многоугольника");
     }
 }
 
-Polygon::Polygon(const std::vector<std::pair<unsigned int, unsigned int>>& coords, unsigned int maxCoord)
-    : maxCoordinate(maxCoord) {
+Polygon::Polygon(const std::vector<std::pair<unsigned int, unsigned int>>& coords, double getMaxCoord())
+    : maxCoordinate(getMaxCoord()) {
     for (const auto& coord : coords) {
         vertices.emplace_back(coord.first, coord.second);
     }
     if (!isValid()) {
         throw std::invalid_argument("Недопустимые координаты многоугольника");
     }
+}
+
+double Polygon::getMaxCoord() const
+{
+    return maxCoordinate;
 }
 
 std::string Polygon::ToString(const Polygon& polygon) {
@@ -54,7 +59,7 @@ void Polygon::draw() const {
 
 Polygon Polygon::ReadFromInput(unsigned int maxCoord) {
     std::vector<Point> points;
-    std::cout << "Введите количество вершин: ";
+    std::os << "Введите количество вершин: ";
     size_t count;
     std::cin >> count;
 
