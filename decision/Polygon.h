@@ -7,13 +7,13 @@
 class Polygon : public Shape {
 private:
     std::vector<Point> vertices;
-    static maxCoordinate;
+    double maxCoordinate;
 
     bool isValid() const;
 
 public:
-    Polygon(const std::vector<Point>& points, double getMaxCoord());
-    Polygon(const std::vector<std::pair<unsigned int, unsigned int>>& coords, double getMaxCoord());
+    Polygon(const std::vector<Point>& points, double maxCoord);
+    Polygon(const std::vector<std::pair<double, double>>& coords, double maxCoord);
     double getMaxCoord() const;
     std::string toString() const override;
 

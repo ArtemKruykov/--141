@@ -14,14 +14,14 @@ namespace Task3Test
         {
             Point p;
 
-            Assert::AreEqual(0u, p.getX());
-            Assert::AreEqual(0u, p.getY());
+            Assert::AreEqual(0.0, p.getX());
+            Assert::AreEqual(0.0, p.getY());
         }
 
         TEST_METHOD(ValueConstructor_CreatesPointWithValues)
         {
-            const unsigned int x = 10;
-            const unsigned int y = 20;
+            const double x = 10.5;
+            const double y = 20.3;
 
             Point p(x, y);
 
@@ -37,6 +37,14 @@ namespace Task3Test
             Assert::IsTrue(p1 == p2);
         }
 
+        TEST_METHOD(EqualityOperator_EqualPoints_ReturnsFalse)
+        {
+            Point p1(1, 2);
+            Point p2(1, 2);
+
+            Assert::IsFalse(p1 != p2);
+        }
+
         TEST_METHOD(EqualityOperator_DifferentX_ReturnsFalse)
         {
             Point p1(1, 2);
@@ -44,6 +52,15 @@ namespace Task3Test
 
             Assert::IsFalse(p1 == p2);
         }
+
+        TEST_METHOD(EqualityOperator_DifferentX_ReturnsTrue)
+        {
+            Point p1(1, 2);
+            Point p2(3, 2);
+
+            Assert::IsTrue(p1 != p2);
+        }
+
 
         TEST_METHOD(EqualityOperator_DifferentY_ReturnsFalse)
         {
@@ -69,28 +86,6 @@ namespace Task3Test
             Assert::IsFalse(p1 != p2);
         }
 
-        TEST_METHOD(AdditionOperator_AddsValueCorrectly)
-        {
-            Point p(1, 2);
-            unsigned int value = 3;
-
-            Point result = p + value;
-
-            Assert::AreEqual(4u, result.getX());
-            Assert::AreEqual(5u, result.getY());
-        }
-
-        TEST_METHOD(SubtractionOperator_SubtractsValueCorrectly)
-        {
-            Point p(5, 4);
-            unsigned int value = 3;
-
-            Point result = p - value;
-
-            Assert::AreEqual(2u, result.getX());
-            Assert::AreEqual(1u, result.getY());
-        }
-
         TEST_METHOD(OutputOperator_FormatsCorrectly)
         {
             Point p(10, 20);
@@ -107,18 +102,23 @@ namespace Task3Test
     public:
         TEST_METHOD(Draw_CallsToString)
         {
-            const unsigned int maxCoord = 100;
-            std::vector<Point> points = { Point(10, 10), Point(20, 10), Point(20, 20) };
-            Polygon polygon(points, maxCoord);
+            class MockShape : public Shape {
+            public:
+                std::string toString() const override {
+                    return "MockShape";
+                }
+                void readFromInput() override {}
+            };
 
+            MockShape shape;
             std::stringstream buffer;
             std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
 
-            polygon.draw();
+            shape.draw();
 
             std::cout.rdbuf(old);
 
-            Assert::IsTrue(buffer.str().find("Polygon with vertices") != std::string::npos);
+            Assert::AreEqual(std::string("MockShape\n"), buffer.str());
         }
     };
 
@@ -127,43 +127,100 @@ namespace Task3Test
     public:
         TEST_METHOD(PolygonConstructor_ValidPoints_CreatesPolygon)
         {
-            const unsigned int maxCoord = 100;
-            std::vector<Point> points = { Point(10, 10), Point(20, 10), Point(20, 20) };
+            const double maxCoord = 100.0;
+            std::vector<Point> points = {
+                Point(10.5, 10.5),
+                Point(20.1, 10.2),
+                Point(20.3, 20.4)
+            };
 
             Polygon polygon(points, maxCoord);
+            std::string result = polygon.toString();
 
-            Assert::AreEqual(3ull, polygon.toString().find("3 vertices"));
+            Assert::IsTrue(result.find("(10.5, 10.5)") != std::string::npos);
+            Assert::IsTrue(result.find("(20.1, 10.2)") != std::string::npos);
+            Assert::IsTrue(result.find("(20.3, 20.4)") != std::string::npos);
         }
 
         TEST_METHOD(PolygonConstructor_TooFewPoints_ThrowsException)
         {
-            const unsigned int maxCoord = 100;
-            std::vector<Point> points = { Point(10, 10), Point(20, 10) };
+            const double maxCoord = 100.0;
+            std::vector<Point> points = {
+                Point(10.5, 10.5),
+                Point(20.1, 10.2)
+            };
 
-            Polygon polygon(points, maxCoord);
+            bool exceptionThrown = false;
+            try {
+                Polygon polygon(points, maxCoord);
+            }
+            catch (...) {
+                exceptionThrown = true;
+            }
 
-            Assert::IsTrue(exceptionThrown, L"Should throw exception when too few points");
+            Assert::IsTrue(exceptionThrown);
         }
 
         TEST_METHOD(PolygonConstructor_PointsExceedMaxCoord_ThrowsException)
         {
-            const unsigned int maxCoord = 100;
-            std::vector<Point> points = { Point(10, 10), Point(20, 10), Point(200, 200) };
+            const double maxCoord = 100.0;
+            std::vector<Point> points = {
+                Point(10.5, 10.5),
+                Point(20.1, 10.2),
+                Point(200.5, 200.5)
+            };
 
-            Polygon polygon(points, maxCoord);
-            Assert::IsTrue(exceptionThrown, L"Should throw exception when coordinates exceed max");
+            bool exceptionThrown = false;
+            try {
+                Polygon polygon(points, maxCoord);
+            }
+            catch (...) {
+                exceptionThrown = true;
+            }
+
+            Assert::IsTrue(exceptionThrown);
         }
 
         TEST_METHOD(ToString_ReturnsCorrectFormat)
         {
-            const unsigned int maxCoord = 100;
-            std::vector<Point> points = { Point(10, 10), Point(20, 10), Point(20, 20) };
-            Polygon polygon(points, maxCoord);
+            const double maxCoord = 100.0;
+            std::vector<Point> points = {
+                Point(10.5, 10.5),
+                Point(20.1, 10.2),
+                Point(20.3, 20.4)
+            };
 
+            Polygon polygon(points, maxCoord);
             std::string result = polygon.toString();
 
-            Assert::IsTrue(result.find("Polygon with vertices") != std::string::npos);
-            Assert::IsTrue(result.find("(10, 10)") != std::string::npos);
+            Assert::IsTrue(result.find("Многоугольник с вершинами: ") != std::string::npos);
+            Assert::IsTrue(result.find("(10.5, 10.5)") != std::string::npos);
+            Assert::IsTrue(result.find("(20.1, 10.2)") != std::string::npos);
+            Assert::IsTrue(result.find("(20.3, 20.4)") != std::string::npos);
+        }
+
+        TEST_METHOD(ReadFromInput_CreatesValidPolygon) {
+            std::stringstream input;
+            input << "3\n(10.5,10.5)\n(20.1,10.2)\n(20.3,20.4)\n";
+
+            std::streambuf* origCin = std::cin.rdbuf(input.rdbuf());
+
+            const double maxCoord = 100.0;
+            bool exceptionThrown = false;
+            try {
+                Polygon polygon = Polygon::ReadFromInput(maxCoord);
+                std::string result = polygon.toString();
+
+                Assert::IsTrue(result.find("(10.5, 10.5)") != std::string::npos);
+                Assert::IsTrue(result.find("(20.1, 10.2)") != std::string::npos);
+                Assert::IsTrue(result.find("(20.3, 20.4)") != std::string::npos);
+            }
+            catch (...) {
+                exceptionThrown = true;
+            }
+
+            std::cin.rdbuf(origCin);
+            Assert::IsFalse(exceptionThrown);
         }
     };
 }

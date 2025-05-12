@@ -15,15 +15,15 @@ bool Polygon::isValid() const {
     return true;
 }
 
-Polygon::Polygon(const std::vector<Point>& points, double getMaxCoord())
-    : vertices(points), maxCoordinate(getMaxCoord()) {
+Polygon::Polygon(const std::vector<Point>& points, double maxCoord)
+    : vertices(points), maxCoordinate(maxCoord) {
     if (!isValid()) {
         throw std::invalid_argument("Недопустимые координаты многоугольника");
     }
 }
 
-Polygon::Polygon(const std::vector<std::pair<unsigned int, unsigned int>>& coords, double getMaxCoord())
-    : maxCoordinate(getMaxCoord()) {
+Polygon::Polygon(const std::vector<std::pair<double, double>>& coords, double maxCoord)
+    : maxCoordinate(maxCoord) {
     for (const auto& coord : coords) {
         vertices.emplace_back(coord.first, coord.second);
     }
@@ -37,34 +37,28 @@ double Polygon::getMaxCoord() const
     return maxCoordinate;
 }
 
-std::string Polygon::ToString(const Polygon& polygon) {
+std::string Polygon::toString() const {
     std::stringstream ss;
     ss << "Многоугольник с вершинами: ";
-    for (size_t i = 0; i < polygon.vertices.size(); ++i) {
-        ss << polygon.vertices[i];
-        if (i != polygon.vertices.size() - 1) {
+    for (size_t i = 0; i < vertices.size(); ++i) {
+        ss << vertices[i];
+        if (i != vertices.size() - 1) {
             ss << ", ";
         }
     }
     return ss.str();
 }
 
-std::string Polygon::toString() const {
-    return toString(*this);
-}
-
 Polygon Polygon::ReadFromInput(unsigned int maxCoord) {
-    std::ostringstream oss;
-    std::istringstream iss;
     std::vector<Point> points;
-    oss << "Введите количество вершин: ";
+    std::cout << "Введите количество вершин: ";
     size_t count;
-    iss >> count;
+    std::cin >> count;
 
-    oss << "Введите вершины (Формата: (x,y)):" << std::endl;
+    std::cout << "Введите вершины (Формата: (x,y)):" << std::endl;
     for (size_t i = 0; i < count; ++i) {
         Point p;
-        iss >> p;
+        std::cin >> p;
         points.push_back(p);
     }
 
@@ -81,6 +75,6 @@ std::ostream& operator<<(std::ostream& os, const Polygon& pol) {
 }
 
 std::istream& operator>>(std::istream& is, Polygon& pol) {
-    is >> pol.x >> pol.y;
+    pol.readFromInput();
     return is;
 }
