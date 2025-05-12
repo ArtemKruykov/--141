@@ -33,8 +33,10 @@ namespace Task3Test
         {
             Point p1(1, 2);
             Point p2(1, 2);
+            Point p3(1, 3);
 
             Assert::IsTrue(p1 == p2);
+            Assert::IsFalse(p1 == p3);
         }
 
         TEST_METHOD(EqualityOperator_EqualPoints_ReturnsFalse)
@@ -43,6 +45,7 @@ namespace Task3Test
             Point p2(1, 2);
 
             Assert::IsFalse(p1 != p2);
+            Assert::IsTrue(p1 == p1);
         }
 
         TEST_METHOD(EqualityOperator_DifferentX_ReturnsFalse)
