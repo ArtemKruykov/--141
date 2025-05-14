@@ -1,4 +1,4 @@
-#include "../desicion/PriorityQueue.h"
+ï»¿#include "../desicion/PriorityQueue.h"
 #include <iostream>
 #include <locale>
 
@@ -8,44 +8,44 @@ int main() {
     setlocale(LC_ALL, "Russian");
 
     PriorityQueue pq1 = { {10, 3}, {20, 1}, {30, 5}, {40, 2} };
-    std::cout << "Íà÷àëüíàÿ î÷åðåäü: " << pq1.toString() << std::endl;
+    std::cout << "ÐÐ°Ñ‡Ð°Ð»ÑŒÐ½Ð°Ñ Ð¾Ñ‡ÐµÑ€ÐµÐ´ÑŒ: " << pq1.toString() << std::endl;
 
     pq1.push(50, 4);  
     pq1 << std::make_pair(60, 0); 
-    std::cout << "Ïîñëå äîáàâëåíèÿ ýëåìåíòîâ: " << pq1.toString() << std::endl;
+    std::cout << "ÐŸÐ¾ÑÐ»Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð²: " << pq1.toString() << std::endl;
 
     int value;
-    std::cout << "\nÈçâëå÷åíèå ýëåìåíòîâ ñ ìàêñèìàëüíûì ïðèîðèòåòîì:" << std::endl;
+    std::cout << "\nÐ˜Ð·Ð²Ð»ÐµÑ‡ÐµÐ½Ð¸Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ñ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¼ Ð¿Ñ€Ð¸Ð¾Ñ€Ð¸Ñ‚ÐµÑ‚Ð¾Ð¼:" << std::endl;
     while (pq1.popMax(value)) {
-        std::cout << "Èçâëå÷åííûé ìàêñèìóì: " << value << std::endl;
+        std::cout << "Ð˜Ð·Ð²Ð»ÐµÑ‡ÐµÐ½Ð½Ñ‹Ð¹ Ð¼Ð°ÐºÑÐ¸Ð¼ÑƒÐ¼: " << value << std::endl;
     }
 
-    std::cout << "\nÎ÷åðåäü ïóñòà: " << std::boolalpha << pq1.isEmpty() << std::endl;
+    std::cout << "\nÐžÑ‡ÐµÑ€ÐµÐ´ÑŒ Ð¿ÑƒÑÑ‚Ð°: " << std::boolalpha << pq1.isEmpty() << std::endl;
 
     PriorityQueue pq2;
     pq2.push(100, 10);
     pq2.push(200, 5);
     pq2.push(300, 20);
-    std::cout << "\nÂòîðàÿ î÷åðåäü: " << pq2.toString() << std::endl;
+    std::cout << "\nÐ’Ñ‚Ð¾Ñ€Ð°Ñ Ð¾Ñ‡ÐµÑ€ÐµÐ´ÑŒ: " << pq2.toString() << std::endl;
 
     if (pq2.popMin(value)) {
-        std::cout << "Èçâëå÷åííûé ìèíèìóì: " << value << std::endl;
+        std::cout << "Ð˜Ð·Ð²Ð»ÐµÑ‡ÐµÐ½Ð½Ñ‹Ð¹ Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼: " << value << std::endl;
     }
-    std::cout << "Ïîñëå èçâëå÷åíèÿ: " << pq2.toString() << std::endl;
+    std::cout << "ÐŸÐ¾ÑÐ»Ðµ Ð¸Ð·Ð²Ð»ÐµÑ‡ÐµÐ½Ð¸Ñ: " << pq2.toString() << std::endl;
 
     if (pq2.peekMax(value)) {
-        std::cout << "Òåêóùèé ìàêñèìóì: " << value << std::endl;
+        std::cout << "Ð¢ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð¼Ð°ÐºÑÐ¸Ð¼ÑƒÐ¼: " << value << std::endl;
     }
     if (pq2.peekMin(value)) {
-        std::cout << "Òåêóùèé ìèíèìóì: " << value << std::endl;
+        std::cout << "Ð¢ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð¼Ð¸Ð½Ð¸Ð¼ÑƒÐ¼: " << value << std::endl;
     }
 
     PriorityQueue pq3 = pq2;
-    std::cout << "\nÑêîïèðîâàííàÿ î÷åðåäü: " << pq3.toString() << std::endl;
+    std::cout << "\nÐ¡ÐºÐ¾Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð½Ð°Ñ Ð¾Ñ‡ÐµÑ€ÐµÐ´ÑŒ: " << pq3.toString() << std::endl;
 
     std::pair<int, int> element;
     pq3 >> element;
-    std::cout << "Èçâëå÷åíî ÷åðåç îïåðàòîð >>: (" << element.first << ", " << element.second << ")" << std::endl;
+    std::cout << "Ð˜Ð·Ð²Ð»ÐµÑ‡ÐµÐ½Ð¾ Ñ‡ÐµÑ€ÐµÐ· Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ >>: (" << element.first << ", " << element.second << ")" << std::endl;
 
     return 0;
 }
