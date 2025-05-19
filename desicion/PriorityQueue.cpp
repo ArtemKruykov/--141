@@ -69,9 +69,9 @@ PriorityQueue& PriorityQueue::operator>>(std::pair<int, int>& element) {
 }
 
 void PriorityQueue::push(int value, int priority) {
-    Node* newNode = new Node(value, priority);
+    Node* newNode = new Node(priority);
 
-    if (isEmpty()) {
+    if (head == nullptr) {
         head = tail = newNode;
     }
     else {
@@ -104,39 +104,22 @@ void PriorityQueue::push(int value, int priority) {
 }
 
 bool PriorityQueue::popMax(int& value) {
-    if (isEmpty()) return false;
+    if (head == nullptr) {
+        return false;
+    }
 
     value = head->value;
-    Node* toDelete = head;
+    Node* temp = head;
     head = head->next;
 
     if (head != nullptr) {
         head->prev = nullptr;
     }
     else {
-        tail = nullptr;
+        tail = nullptr; 
     }
 
-    delete toDelete;
-    size--;
-    return true;
-}
-
-bool PriorityQueue::popMin(int& value) {
-    if (isEmpty()) return false;
-
-    value = tail->value;
-    Node* toDelete = tail;
-    tail = tail->prev;
-
-    if (tail != nullptr) {
-        tail->next = nullptr;
-    }
-    else {
-        head = nullptr;
-    }
-
-    delete toDelete;
+    delete temp;
     size--;
     return true;
 }

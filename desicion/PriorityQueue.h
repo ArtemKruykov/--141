@@ -10,7 +10,7 @@ private:
      * @brief Узел очереди
      */
     struct Node {
-        int value;
+        int value = 0;
         int priority;
         Node* next;
         Node* prev;
@@ -20,7 +20,7 @@ private:
          * @param val Значение элемента
          * @param prio Приоритет элемента
          */
-        Node(int val, int prio) : value(val), priority(prio), next(nullptr), prev(nullptr) {}
+        Node(int prio) : priority(prio), next(nullptr), prev(nullptr) {}
     };
 
     Node* head;
@@ -98,13 +98,6 @@ public:
      * @return true если элемент был извлечен, false если очередь пуста
      */
     bool popMax(int& value);
-
-    /**
-     * @brief Извлечение элемента с минимальным приоритетом
-     * @param value Ссылка для сохранения извлеченного значения
-     * @return true если элемент был извлечен, false если очередь пуста
-     */
-    bool popMin(int& value);
 
     /**
      * @brief Просмотр элемента с максимальным приоритетом без извлечения

@@ -28,11 +28,7 @@ int main() {
     pq2.push(300, 20);
     std::cout << "\nВторая очередь: " << pq2.toString() << std::endl;
 
-    if (pq2.popMin(value)) {
-        std::cout << "Извлеченный минимум: " << value << std::endl;
-    }
-    std::cout << "После извлечения: " << pq2.toString() << std::endl;
-
+   
     if (pq2.peekMax(value)) {
         std::cout << "Текущий максимум: " << value << std::endl;
     }
